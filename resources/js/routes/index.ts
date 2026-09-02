@@ -378,3 +378,84 @@ dashboardForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =
 })
 
 dashboard.form = dashboardForm
+
+/**
+* @see \App\Http\Controllers\PaintingListController::collection
+* @see app/Http/Controllers/PaintingListController.php:15
+* @route '/collection'
+*/
+export const collection = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: collection.url(options),
+    method: 'get',
+})
+
+collection.definition = {
+    methods: ["get","head"],
+    url: '/collection',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\PaintingListController::collection
+* @see app/Http/Controllers/PaintingListController.php:15
+* @route '/collection'
+*/
+collection.url = (options?: RouteQueryOptions) => {
+    return collection.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\PaintingListController::collection
+* @see app/Http/Controllers/PaintingListController.php:15
+* @route '/collection'
+*/
+collection.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: collection.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\PaintingListController::collection
+* @see app/Http/Controllers/PaintingListController.php:15
+* @route '/collection'
+*/
+collection.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: collection.url(options),
+    method: 'head',
+})
+
+/**
+* @see \App\Http\Controllers\PaintingListController::collection
+* @see app/Http/Controllers/PaintingListController.php:15
+* @route '/collection'
+*/
+const collectionForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: collection.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\PaintingListController::collection
+* @see app/Http/Controllers/PaintingListController.php:15
+* @route '/collection'
+*/
+collectionForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: collection.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\PaintingListController::collection
+* @see app/Http/Controllers/PaintingListController.php:15
+* @route '/collection'
+*/
+collectionForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: collection.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+collection.form = collectionForm
